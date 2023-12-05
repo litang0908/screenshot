@@ -3,6 +3,7 @@ library screenshot;
 // import 'dart:io';
 import 'dart:async';
 import 'dart:typed_data';
+
 // import 'package:path_provider/path_provider.dart';
 import 'dart:ui' as ui;
 
@@ -162,7 +163,7 @@ class ScreenshotController {
       child: RenderPositionedBox(
           alignment: Alignment.center, child: repaintBoundary),
       configuration: ViewConfiguration(
-        size: logicalSize,
+        // size: logicalSize,
         devicePixelRatio: pixelRatio ?? 1.0,
       ),
     );
@@ -243,17 +244,14 @@ class ScreenshotController {
       ///
       ///retry untill capture is successfull
       ///
-
     } while (isDirty && retryCounter >= 0);
     try {
-
-      /// Dispose All widgets 
+      /// Dispose All widgets
       rootElement.visitChildren((Element element) {
         rootElement.deactivateChild(element);
       });
       buildOwner.finalizeTree();
     } catch (e) {}
-
 
     return image; // Adapted to directly return the image and not the Uint8List
   }
